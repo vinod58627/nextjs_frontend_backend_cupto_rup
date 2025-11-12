@@ -1,10 +1,14 @@
 "use client"
-import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+
 const UserDetail = ({ id }) => {
+    const [user, serUser] = useState({})
+    const router = useRouter();
     const getCustomer = async () => {
         const res = await fetch(`http://172.16.118.209:4000/api/customer/${id}`)
         const result = await res.json()
-        console.log(result?.data)
+        serUser(result?.data)
     }
     useEffect(() => {
         if (id) {
@@ -12,7 +16,14 @@ const UserDetail = ({ id }) => {
         }
     }, [id])
     return (
-        <div>UserDetail</div>
+        <div>
+            <button type="button" className="btn btn-primary float-end" onClick={() => router.back()}>Back</button>
+            <p>Name : {user?.name}</p>
+            <p>Age : {user?.age}</p>
+            <p>Address : {user?.address}</p>
+            <p>Salary : {user?.salary}</p>
+            <p>Email : {user?.email}</p>
+        </div>
     )
 }
 

@@ -9,7 +9,6 @@ const Page = () => {
     const getUsers = async () => {
         const res = await fetch('http://172.16.118.209:4000/api/customer');
         const result = await res.json();
-        console.log(result)
         setData(result);
     };
 
