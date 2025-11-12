@@ -12,6 +12,7 @@ const Header = () => {
                 <li><Link href="/dynamicroutes/paramsroute/vinod">CatchAllRoutes</Link></li>
                 <li><Link href="/ssrvscsr/csr">SsrVsCsr</Link></li>
                 <li><Link href="/routeruseRouter">Navigation</Link></li>
+                <li><Link href="/users">Users List</Link></li>
             </ul>
         </div>
     )

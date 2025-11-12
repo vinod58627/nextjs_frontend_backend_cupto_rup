@@ -33,10 +33,10 @@ export const DELETE = async (req, context) => {
     const existingCustomer = await Customer.findById(id);
 
     if (existingCustomer) {
-        const customer = await Customer.deleteOne({ _id: id });
+        await Customer.deleteOne({ _id: id });
         return NextResponse.json({
             success: true,
-            message: `Customer (${customer.name}) deleted successfully`,
+            message: `Customer (${existingCustomer.name}) deleted successfully`,
         });;
     }
     return NextResponse.json({ success: false, data: "Not Deleted" });
