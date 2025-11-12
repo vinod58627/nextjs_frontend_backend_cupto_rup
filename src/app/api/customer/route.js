@@ -15,7 +15,7 @@ export const POST = async (req, res) => {
     try {
         const { name, age, address, salary, email } = body
         const result = await Customer.create({ name, age, address, salary, email })
-        return NextResponse.json({ data: result })
+        return NextResponse.json({ data: result, message: `Customer (${result.name}) Created successfully` })
     } catch (error) {
         console.log(error)
     }

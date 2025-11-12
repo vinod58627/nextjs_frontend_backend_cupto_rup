@@ -1,11 +1,12 @@
 "use client"
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import UserDetail from './[id]/UserDetail';
 
 const Page = () => {
     const router = useRouter();
     const [data, setData] = useState([]);
-
+    const [adduser, setAddUser] = useState(false)
     const getUsers = async () => {
         const res = await fetch('http://172.16.118.209:4000/api/customer');
         const result = await res.json();
@@ -25,11 +26,21 @@ const Page = () => {
             getUsers();
         }
     };
+    const HandleAdd = (text) => {
+        if (text) {
+            alert(text);
+            setAddUser(false);
+            getUsers();
+        }
+    }
+
     return (
         <div>
+            <button type="button" className="float-end btn btn-primary" onClick={() => setAddUser(true)}> Add User</button>
             <table className="table table-bordered mx-5">
                 <thead>
                     <tr>
+                        <th>S. No</th>
                         <th>Name</th>
                         <th>Age</th>
                         <th>Address</th>
@@ -39,8 +50,9 @@ const Page = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.message?.map((item) => (
+                    {data?.message?.map((item, index) => (
                         <tr key={item._id}>
+                            <td>{index + 1}</td>
                             <td>{item.name}</td>
                             <td>{item.age}</td>
                             <td>{item.address}</td>
@@ -54,6 +66,11 @@ const Page = () => {
                     ))}
                 </tbody>
             </table>
+
+            {
+                adduser &&
+                <UserDetail id="" HandleAdd={HandleAdd} />
+            }
         </div>
     );
 };

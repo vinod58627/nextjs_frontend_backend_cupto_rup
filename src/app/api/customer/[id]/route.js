@@ -41,3 +41,18 @@ export const DELETE = async (req, context) => {
     }
     return NextResponse.json({ success: false, data: "Not Deleted" });
 }
+
+export const PUT = async (req, context) => {
+    const params = await context.params;
+    const { id } = params;
+    const body = await req.json();
+    DbConnection()
+    try {
+        const { name, age, address, salary, email } = body
+        const updatedCustomer = await Customer.findByIdAndUpdate(id, { name, age, address, salary, email });
+        return NextResponse.json({ data: updatedCustomer, message: `Customer (${updatedCustomer.name}) Updated successfully` })
+    } catch (error) {
+        console.log(error)
+    }
+
+}
