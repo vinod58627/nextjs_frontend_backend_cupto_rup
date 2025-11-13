@@ -13,6 +13,7 @@ const Header = () => {
                 <li><Link href="/ssrvscsr/csr">SsrVsCsr</Link></li>
                 <li><Link href="/routeruseRouter">Navigation</Link></li>
                 <li><Link href="/users">Users List</Link></li>
+                <li><Link href="/serverActions">Server Actions/CRUD Without Api</Link></li>
             </ul>
         </div>
     )
